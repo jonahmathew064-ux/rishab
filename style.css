@@ -1,0 +1,185 @@
+/* Import Google Fonts for better typography */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif; /* Clean, modern font for body text */
+    background: linear-gradient(135deg, #ff1493, #ff69b4, #ffb6c1); /* Romantic pink gradient background ("colour of love" pink) */
+    color: #4a4a4a; /* Dark gray text for readability */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    min-height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.background-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, rgba(255, 20, 147, 0.1) 1px, transparent 1px); /* Subtle heart-like pattern */
+    background-size: 50px 50px; /* Size of pattern dots */
+    opacity: 0.3; /* Low opacity for subtlety */
+    z-index: -1; /* Behind main content */
+}
+
+.container {
+    max-width: 600px; /* Max width for desktop */
+    width: 90%; /* Responsive width */
+    padding: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white for glass effect */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    padding: 40px;
+    text-align: center;
+    backdrop-filter: blur(10px); /* Blur effect for modern look */
+    animation: slideIn 1s ease-out; /* Entrance animation */
+}
+
+@keyframes slideIn {
+    from { transform: translateY(50px); opacity: 0; } /* Start below and invisible */
+    to { transform: translateY(0); opacity: 1; } /* End at normal position */
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive; /* Elegant cursive font for title */
+    font-size: 2.5em;
+    color: #ff1493; /* Deep pink to match theme */
+    text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.3); /* Subtle shadow */
+    margin-bottom: 20px;
+    animation: pulse 2s infinite; /* Gentle pulsing effect */
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); } /* Slight zoom for emphasis */
+}
+
+.intro {
+    font-size: 1.2em;
+    line-height: 1.6; /* Better readability */
+    margin-bottom: 30px;
+    color: #666; /* Muted gray */
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between options */
+    margin-bottom: 20px;
+}
+
+.option {
+    position: relative;
+    cursor: pointer;
+}
+
+.option input {
+    display: none; /* Hide radio buttons, style labels instead */
+}
+
+.option-text {
+    display: inline-block;
+    padding: 15px 25px;
+    background: #ffe6f0; /* Light pink background */
+    border-radius: 50px; /* Pill shape */
+    border: 2px solid #ff1493; /* Pink border */
+    transition: all 0.3s ease; /* Smooth hover effects */
+    font-weight: 500;
+}
+
+.option input:checked + .option-text {
+    background: #ff1493; /* Selected state background */
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4); /* Glow effect */
+}
+
+textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ffb6c1; /* Light pink border */
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    resize: vertical; /* Allow vertical resizing only */
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #ff1493; /* Focus border color */
+    box-shadow: 0 0 10px rgba(255, 20, 147, 0.3); /* Focus glow */
+}
+
+.submit-btn {
+    background: linear-gradient(45deg, #ff1493, #ff69b4); /* Gradient button */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3); /* Shadow for depth */
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(255, 20, 147, 0.5); /* Enhanced shadow */
+}
+
+#thank-you {
+    animation: fadeIn 1s ease-in; /* Fade-in animation */
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); } /* Start small and invisible */
+    to { opacity: 1; transform: scale(1); } /* End normal */
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: fall 3s linear infinite; /* Falling animation */
+    z-index: 10; /* Above other elements */
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10px) rotate(0deg); } /* Start above */
+    100% { transform: translateY(100vh) rotate(360deg); } /* Fall to bottom with spin */
+}
+
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+    .card {
+        padding: 20px; /* Smaller padding on mobile */
+    }
+    h1 {
+        font-size: 2em; /* Smaller title */
+    }
+    .options {
+        flex-direction: column; /* Stack options vertically */
+        gap: 10px;
+    }
+    .option-text {
+        padding: 12px 20px; /* Adjust padding */
+    }
+}

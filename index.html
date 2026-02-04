@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for custom typography (Dancing Script for title, Poppins for body text) -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons (hearts, checkmarks, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background hearts pattern for subtle aesthetic enhancement -->
+    <div class="background-hearts"></div>
+    <div class="container">
+        <div class="card">
+            <!-- Main title with Font Awesome icons and cute emojis for romance -->
+            <h1><i class="fas fa-heart"></i> Will You Be My Valentine? 💖🌸</h1>
+            <!-- Introductory text with emojis to make it more engaging and cute -->
+            <p class="intro">Hey there! 💕 I've been thinking about you a lot, and I can't imagine a better way to spend Valentine's Day than with you. What do you say? 😊✨</p>
+            
+            <!-- Form for user interaction (radio buttons for yes/no, textarea for message) -->
+            <form id="valentine-form">
+                <div class="options">
+                    <!-- Yes option with icon and emojis -->
+                    <label class="option">
+                        <input type="radio" name="response" value="yes" required>
+                        <span class="option-text"><i class="fas fa-check-circle"></i> Yes! 💕😍</span>
+                    </label>
+                    <!-- No option with icon and emoji -->
+                    <label class="option">
+                        <input type="radio" name="response" value="no">
+                        <span class="option-text"><i class="fas fa-times-circle"></i> No, thanks. 😔</span>
+                    </label>
+                </div>
+                <!-- Optional message textarea with emoji in placeholder -->
+                <textarea id="message" placeholder="Leave a sweet message... (optional) 💌"></textarea>
+                <!-- Submit button with icon and emoji -->
+                <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Send My Answer 💌</button>
+            </form>
+            
+            <!-- Thank-you section (hidden initially, shown after form submission) -->
+            <div id="thank-you" class="hidden">
+                <h2>Thank You! <i class="fas fa-kiss-wink-heart"></i> 🌟</h2>
+                <p id="response-text"></p>
+                <p id="user-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for form handling and dynamic effects
+        const form = document.getElementById('valentine-form');
+        const thankYou = document.getElementById('thank-you');
+        const responseText = document.getElementById('response-text');
+        const userMessage = document.getElementById('user-message');
+
+        // Event listener for form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            const response = document.querySelector('input[name="response"]:checked').value;
+            const message = document.getElementById('message').value;
+
+            // Customize response text based on yes/no, with emojis for cuteness
+            if (response === 'yes') {
+                responseText.textContent = "Yay! I knew you'd say yes! 😘 Let's make some memories! 🎉💑";
+            } else {
+                responseText.textContent = "Aww, maybe next time? 😊 No hard feelings! 🤗";
+            }
+
+            // Display user's message if provided, with emoji
+            if (message) {
+                userMessage.textContent = `"${message}" 💖`;
+            } else {
+                userMessage.textContent = "";
+            }
+
+            // Hide form and show thank-you message with animation
+            form.style.display = 'none';
+            thankYou.classList.remove('hidden');
+            thankYou.classList.add('fade-in');
+
+            // Trigger confetti animation for celebration
+            createConfetti();
+        });
+
+        // Function to create confetti effect (100 pieces falling randomly)
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.backgroundColor = ['#ff6b9d', '#fecfef', '#ff9a9e', '#ffb3ba'][Math.floor(Math.random() * 4)]; // Random pink shades
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000); // Remove after 3 seconds
+            }
+        }
+    </script>
+</body>
+</html>
